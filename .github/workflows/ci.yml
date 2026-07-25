@@ -26,7 +26,7 @@ jobs:
       - name: Aguardar a aplicação responder
         run: |
           for i in $(seq 1 30); do
-            if curl -sf http://localhost:3000/items > /dev/null; then
+            if curl -sf http://localhost:3000/itemsss > /dev/null; then
               echo "Aplicacao no ar!"
               exit 0
             fi

@@ -132,3 +132,48 @@ Prints adicionais tirados durante o processo (não obrigatórios, mas documentam
 ![PR vermelho detalhado](docs/imagens/21%20-%206.1%20Quebra%20Proposital%20Pull%20Request3.png)
 ![Correção aplicada](docs/imagens/22%20-%206.1%20Quebra%20Proposital%20Correção%201.png)
 ![PR verde após correção](docs/imagens/23%20-%206.1%20Quebra%20Proposital%20Correção%202.png)
+
+
+## CD — Publicação no Docker Hub
+
+Aluno(a): André da Silva Rodrigues
+Turma: ITEAM - Noturno
+Usuário do Docker Hub: andre369
+Imagem publicada: andre369/meu-projeto-docker:latest
+Link da imagem no Docker Hub: https://hub.docker.com/r/andre369/meu-projeto-docker
+
+Dispara quando: push na branch main
+Arquivo do workflow: .github/workflows/cd.yml
+
+Print 1 — token criado no Docker Hub
+![Token criado](docs/imagens/print_1_lista_de_tokens.png)
+
+Print 2 — Secrets cadastrados no GitHub
+![Secrets cadastrados](docs/imagens/print_2_-_pagina_com_os_nomes_cadastrados.png)
+
+Print 3 — workflow de CD verde na aba Actions
+![CD verde](docs/imagens/print 3_-_ Actions_CD_Verde.png)
+
+Print 4 — imagem publicada no Docker Hub
+![Imagem publicada](docs/imagens/print_4_-_Docker_hub_img_publicada.png)
+
+Print 5 — docker pull baixando a imagem publicada
+![Docker pull](docs/imagens/print_5_-_Docker_pull_baixando_img_publicada.png)
+
+Print 5.1
+![Docker pull](docs/imagens/print 5.1_-_app_funcionando.png)
+
+Print 5.2
+![Docker pull](docs/imagens/print 5.2_-_app_funcionando2.png)
+
+
+
+### Respostas
+
+1. **O que é o Docker Hub?** É um repositório central na nuvem para imagens Docker — digamos que é como um "GitHub de imagens", onde qualquer pessoa pode publicar ou baixar imagens prontas para rodar em qualquer máquina com Docker instalado.
+
+2. **Diferença entre CI e CD:** o CI (Integração Contínua) testa automaticamente se o código funciona a cada push, validando o build e a aplicação. O CD (Entrega Contínua) tem um papel que vai além: depois que o código passa nos testes, ele constrói e publica a imagem final num lugar acessível (o Docker Hub), automatizando também a entrega, não só a verificação.
+
+3. **Por que usar token e Secrets em vez de usuário/senha no cd.yml?** Porque o arquivo `cd.yml` fica público no repositório — qualquer credencial escrita ali ficaria visível para qualquer pessoa. Os Secrets do GitHub guardam esses valores de forma criptografada e só os injetam durante a execução do workflow, sem expor o valor em nenhum lugar do código. O token, além disso, tem permissão limitada e pode ser revogado a qualquer momento sem precisar trocar a senha da conta.
+
+4. **O que significa a tag `latest`?** É a versão "mais recente" da imagem — quando ninguém especifica uma versão numerada (ex.: `v1.0`), o Docker assume `latest` como padrão. Toda vez que o CD publica uma nova imagem sem trocar a tag, ela substitui a `latest` anterior.

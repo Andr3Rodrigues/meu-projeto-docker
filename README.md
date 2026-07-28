@@ -88,7 +88,7 @@ Erro que apareceu no log: `A aplicacao nao subiu a tempo`, seguido de `exit 1`, 
 Como o CI reagiu: o pipeline parou no step "Aguardar a aplicação responder", antes de chegar ao smoke test, evitando que um erro de rota passasse despercebido.
 Como eu corrigi: segui a indicaçã do material e voltei a URL para `/items`, fiz commit e push na mesma branch (`quebra-proposital`), e o mesmo Pull Request passou a ficar verde.
 
-Link do Pull Request: [cole aqui a URL do seu PR]
+Link do Pull Request: (https://github.com/Andr3Rodrigues/meu-projeto-docker/pull/1)
 
 Print 9 — execução vermelha + log do erro
 ![Actions vermelho](docs/imagens/21%20-%206.1%20Quebra%20Proposital%20Pull%20Request2.png)
@@ -170,10 +170,10 @@ Print 5.2
 
 ### Respostas
 
-1. **O que é o Docker Hub?** É um repositório central na nuvem para imagens Docker — digamos que é como um "GitHub de imagens", onde qualquer pessoa pode publicar ou baixar imagens prontas para rodar em qualquer máquina com Docker instalado.
+1. **O que é o Docker Hub?** É um repositório central na nuvem para imagens Docker, digamos que é como um "GitHub de imagens", onde qualquer pessoa pode publicar ou baixar imagens prontas para rodar em qualquer máquina com Docker instalado.
 
 2. **Diferença entre CI e CD:** o CI (Integração Contínua) testa automaticamente se o código funciona a cada push, validando o build e a aplicação. O CD (Entrega Contínua) tem um papel que vai além: depois que o código passa nos testes, ele constrói e publica a imagem final num lugar acessível (o Docker Hub), automatizando também a entrega, não só a verificação.
 
-3. **Por que usar token e Secrets em vez de usuário/senha no cd.yml?** Porque o arquivo `cd.yml` fica público no repositório — qualquer credencial escrita ali ficaria visível para qualquer pessoa. Os Secrets do GitHub guardam esses valores de forma criptografada e só os injetam durante a execução do workflow, sem expor o valor em nenhum lugar do código. O token, além disso, tem permissão limitada e pode ser revogado a qualquer momento sem precisar trocar a senha da conta.
+3. **Por que usar token e Secrets em vez de usuário/senha no cd.yml?** Porque o arquivo `cd.yml` fica público no repositório. Qualquer credencial escrita ali ficaria visível para qualquer pessoa. Os Secrets do GitHub guardam esses valores de forma criptografada e só os injetam durante a execução do workflow, sem expor o valor em nenhum lugar do código. O token, além disso, tem permissão limitada e pode ser revogado a qualquer momento sem precisar trocar a senha da conta.
 
 4. **O que significa a tag `latest`?** É a versão "mais recente" da imagem — quando ninguém especifica uma versão numerada (ex.: `v1.0`), o Docker assume `latest` como padrão. Toda vez que o CD publica uma nova imagem sem trocar a tag, ela substitui a `latest` anterior.
